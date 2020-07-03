@@ -1,50 +1,90 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component, OnInit } from '@angular/core';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { CapituloIiiPage } from '../pages/capitulo-iii/capitulo-iii';
-import { CapituloIvPage } from '../pages/capitulo-iv/capitulo-iv';
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
 })
-export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+export class AppComponent implements OnInit {
+  public selectedIndex = 0;
+  public appPages = [
+    
+    {
+      title: 'CAPITULO I',
+      url: '/capitulo-i',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO II',
+      url: '/capitulo-ii',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO III',
+      url: '/capitulo-iii',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO IV',
+      url: '/capitulo-iv',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO V',
+      url: '/capitulo-v',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO VI',
+      url: '/capitulo-vi',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO VII',
+      url: '/capitulo-vii',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO VIII',
+      url: '/capitulo-viii',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO IX',
+      url: '/capitulo-ix',
+      icon: 'archive'
+    },
+    {
+      title: 'CAPITULO X',
+      url: '/capitulo-x',
+      icon: 'archive'
+    }
+  ];
+  public labels = ['Anotações', 'Revisão'];
 
-  rootPage: any = HomePage;
-
-  pages: Array<{title: string, component: any}>;
-
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar
+  ) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: "CAPÍTULO I", component: HomePage },
-      { title: "CAPÍTULO II", component: ListPage },
-      { title: "CAPÍTULO III", component: CapituloIiiPage },
-      { title: "CAPÍTULO IV", component: CapituloIvPage },
-
-    ];
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  ngOnInit() {
+    const path = window.location.pathname.split('folder/')[1];
+    if (path !== undefined) {
+      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "lgpd",
+  "name": "webLGPD",
   "integrations": {},
-  "type": "ionic-angular"
+  "type": "angular"
 }

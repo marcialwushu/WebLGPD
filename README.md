@@ -3,5 +3,3 @@
 # LEI Nº 13.709, DE 14 DE AGOSTO DE 2018.
 
 ## Lei Geral de Proteção de Dados Pessoais (LGPD).   
-
-
